@@ -14,17 +14,17 @@ object sfs_eval( object input )
 
  input= cdr (input);
  while ( input !() )
-	{
+{
 	if (car (input))
+	{
+	if (eval(car (input)) == FALSE)
 		{
-		if (eval(car (input)) == FALSE)
-			{
-			return FALSE; 
-			}
-		object = cdr(input);
-		return TRUE;
+		return FALSE; 
 		}
+	object = cdr(input);
+	return TRUE;
 	}
+}
 
  switch (input->type) 
 	{
