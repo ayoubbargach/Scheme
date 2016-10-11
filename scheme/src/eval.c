@@ -11,79 +11,79 @@
 
 object sfs_eval( object input )
 {
-
- input= cdr (input);
- while ( input !() )
-{
-	if (car (input))
+	input= cdr (input);
+	while ( input !() )
 	{
-	if (eval(car (input)) == FALSE)
+		if (car (input))
 		{
-		return FALSE; 
+		if (eval(car (input)) == FALSE)
+			{
+			return FALSE; 
+			}
+		object = cdr(input);
+		return TRUE;
 		}
-	object = cdr(input);
-	return TRUE;
 	}
-}
 
- switch (input->type) 
+ 	switch (input->type) 
 	{
  	
-	case SFS_CHARACTER:  
-	return input;
-	break;
+		case SFS_CHARACTER:  
+		return input;
+		break;
 	
-	case SFS_STRING:
-	return input;
-	break;  
-            
-	case SFS_NIL:
-	return input;
-	break;
-               
-	case SFS_SYMBOL:
-	return input;   
-	break;
+		case SFS_STRING:
+		return input;
+		break;  
+		    
+		case SFS_NIL:
+		return input;
+		break;
+		       
+		case SFS_SYMBOL:
+		return input;   
+		break;
 
-	case SFS_BOOLEAN:
-	return input;  
-	break;
+		case SFS_BOOLEAN:
+		return input;  
+		break;
 	
-	case SFS_PAIR; 
-	break;  
+		case SFS_PAIR; 
+		break;  
 
 	
 
 	}
- if (is_if(input))
-	 {
-	object = cdr(input);
+	
+	if (is_if(input))
+	{
+		object = cdr(input);
 		{
-		if(eval(car(input)==TRUE))
+			if(eval(car(input)==TRUE))
 			{
 			return eval(car(cdr(input)));
 			}
 		}
-	return eval (car(cdr(cdr(input))));
+		return eval (car(cdr(cdr(input))));
 	}
 
 
- if (is_and(input))
+	if (is_and(input))
 	{
-	obj=cdr(obj) /* recupere les arguments*/
-	while (obj !())
+		obj=cdr(obj) /* recupere les arguments*/
+		while (obj !())
 		{
-		if (cdr(obj)== FALSE)
-		return FALSE;
-		obj=cdr (obj); /* passage a l'argument suivent*/
+			if (cdr(obj)== FALSE)
+			return FALSE;
+			obj=cdr (obj); /* passage a l'argument suivent*/
 		}
-	return TRUE;
+		return TRUE;
 
- 	}
+	}
 
- if(is_quote(input))
+	if(is_quote(input))
 	{
-	
+
 
 
 
@@ -95,6 +95,6 @@ object sfs_eval( object input )
 
 
 
-/*  return input; */
+	/*  return input; */
 }
 
