@@ -15,18 +15,14 @@
 object make_object( uint type ) {
 
     object t = sfs_malloc( sizeof( *t ) );
-
     t->type = type;
-
     return t;
 }
 
 object make_nil( void ) {
 
     object t = make_object( SFS_NIL );
-
     t->this.special = t; /* fonction qui cree l'objet empty_list*/
-
     return t;
 }
 
